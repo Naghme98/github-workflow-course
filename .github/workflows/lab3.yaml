@@ -12,9 +12,9 @@ jobs:
   setup-python:
     runs-on: ubuntu-latest
     outputs:
-      output_1: ${{ steps.greeting_step.outputs.greeting_3.8 }}
-      output_2: ${{ steps.greeting_step.outputs.greeting_3.9 }}
-      output_3: ${{ steps.greeting_step.outputs.greeting_3.10 }}
+      output_1: ${{ steps.greeting_step.outputs.greeting_8 }}
+      output_2: ${{ steps.greeting_step.outputs.greeting_9 }}
+      output_3: ${{ steps.greeting_step.outputs.greeting_10 }}
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10'] # Test different Python versions
@@ -42,8 +42,8 @@ jobs:
       - name: Output greeting
         id: greeting_step
         run: |
-          version="${{ matrix.python-version }}"
-          echo "greeting_${version}=Hello from Python ${{ matrix.python-version }}" >> $GITHUB_ENV
+          major_version=$(echo ${{ matrix.python-version }} | cut -d '.' -f 1)
+          echo "greeting_${major_version}=Hello from Python ${{ matrix.python-version }}" >> $GITHUB_ENV
 
   confirm-greeting:
     runs-on: ubuntu-latest
