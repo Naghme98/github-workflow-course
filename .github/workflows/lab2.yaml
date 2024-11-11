@@ -12,7 +12,7 @@ jobs:
   print-time:
     runs-on: ubuntu-latest
     env:
-      USERNAME: "Hello"
+      USERNAME: "Naghme"
       PASSWORD: ${{secrets.PASSWORD}}
     steps:
       - name: Checkout code
