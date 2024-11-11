@@ -1,0 +1,23 @@
+# .github/workflows/lab2.yml
+name: Basic CI Pipeline
+
+on: 
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  print-time:
+    runs-on: ubuntu-latest
+    env:
+      GREETING: "Hello"
+      TIME_ZONE: ${{secrets.TIME_ZONE}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Display time with greeting
+        run: |
+          echo "${{ env.GREETING }}, the current time in ${{ env.TIME_ZONE }} is $(date -u)"
