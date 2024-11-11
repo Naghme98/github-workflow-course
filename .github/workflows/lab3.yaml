@@ -54,4 +54,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Confirm greeting
-        run: echo "Confirmed greeting -> ${{ needs.setup-python.outputs }}"
+        run: echo "Confirmed greeting -> ${{ toJSON(needs.setup-python.outputs) }}"
