@@ -12,12 +12,12 @@ jobs:
   print-time:
     runs-on: ubuntu-latest
     env:
-      GREETING: "Hello"
-      TIME_ZONE: ${{secrets.TIME_ZONE}}
+      USERNAME: "Hello"
+      PASSWORD: ${{secrets.PASSWORD}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Display time with greeting
         run: |
-          echo "${{ env.GREETING }}, the current time in ${{ env.TIME_ZONE }} is $(date -u)"
+          echo "Good day ${{ env.USERNAME }}!\nYou logged in with ${{ env.PASSWORD }}.\nThe current time in  is $(date -u)"
