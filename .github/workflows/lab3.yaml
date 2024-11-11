@@ -42,7 +42,7 @@ jobs:
       - name: Output greeting
         id: greeting_step
         run: |
-          major_version=$(echo ${{ matrix.python-version }} | cut -d '.' -f 1)
+          major_version=$(echo ${{ matrix.python-version }} | cut -d '.' -f 2)
           echo "greeting_${major_version}=Hello from Python ${{ matrix.python-version }}" >> $GITHUB_ENV
 
   confirm-greeting:
