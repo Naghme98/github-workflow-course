@@ -1,4 +1,4 @@
-# .github/workflows/lab2.yml
+# .github/workflows/lab3.yml
 name: Basic matrix,cache Pipeline
 
 on: 
@@ -43,7 +43,7 @@ jobs:
         id: greeting_step
         run: |
           major_version=$(echo ${{ matrix.python-version }} | cut -d '.' -f 2)
-          echo "greeting_${major_version}=Hello from Python ${{ matrix.python-version }}" >> $GITHUB_ENV
+          echo "greeting_${major_version}=Hello from Python ${{ matrix.python-version }}" >> "$GITHUB_OUTPUT"
 
   confirm-greeting:
     runs-on: ubuntu-latest
