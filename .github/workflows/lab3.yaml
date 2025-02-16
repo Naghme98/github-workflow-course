@@ -1,4 +1,4 @@
-# .github/workflows/lab2.yml
+# .github/workflows/lab3.yml
 name: Basic CI Pipeline
 
 on: 
