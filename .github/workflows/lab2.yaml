@@ -1,0 +1,39 @@
+# .github/workflows/lab2.yml
+name: Multi-Event Workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - '!docs/**'
+
+  pull_request:
+    types: [opened, synchronize]
+    branches-ignore:
+      - 'experimental/**'
+
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Custom Message'
+        required: false
+        default: 'Manual Trigger'
+
+  repository_dispatch:
+    types: [external_trigger]
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run a Simple Task
+        run: echo "Hello, GitHub Actions!"
