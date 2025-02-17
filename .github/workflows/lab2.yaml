@@ -19,10 +19,25 @@ on:
 
   workflow_dispatch:
     inputs:
-      message:
-        description: 'Custom Message'
-        required: false
-        default: 'Manual Trigger'
+     logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+          
+     print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+        
+     tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string     
 
   repository_dispatch:
     types: [external_trigger]
@@ -31,9 +46,15 @@ jobs:
   run-task:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Code
         uses: actions/checkout@v4
-
+        
       - name: Run a Simple Task
-        run: echo "Hello, GitHub Actions!"
+        run: echo "Hello, GitHub Actions lab2!"  
+        
+  check-input:
+     runs-on: ubuntu-latest
+     if: ${{ inputs.print_tags }} 
+     steps:
+      - name: Check tags 
+        run: echo  The tags are ${{ inputs.tags }} 
