@@ -12,7 +12,7 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches-ignore:
-      - 'experimental/**'
+      - experimental
 
   schedule:
     - cron: '0 0 * * *'  # Runs daily at midnight UTC
