@@ -20,7 +20,7 @@ jobs:
 
       - name: Display time with greeting
         run: |
-          echo "Good day USERNAME!;You logged in with ${{ env.PASSWORD }}.;The current time in  is $(date -u)"
+          echo "Good day $USERNAME!;You logged in with ${{ env.PASSWORD }}.;The current time in  is $(date -u)"
 
       - name: Run a different script based on the branch
         run: |
