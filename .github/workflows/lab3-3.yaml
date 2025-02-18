@@ -21,3 +21,12 @@ jobs:
       - name: Display time with greeting
         run: |
           echo "Good day ${{ env.USERNAME }}!;You logged in with ${{ env.PASSWORD }}.;The current time in  is $(date -u)"
+
+      - name: Run a different script based on the branch
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "Deploying to production..."
+          else
+            echo "Deploying to staging..."
+          fi
+    
