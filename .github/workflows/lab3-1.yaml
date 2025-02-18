@@ -12,12 +12,14 @@ jobs:
       - name: Use the environment variable
         run: echo "Hello, my name is $MY_NAME"
 
+
       - name: Generate output
         id: example_step
-        run: echo "greeting=Hello from workflow commands!" >> $GITHUB_OUTPUT
+        run: echo "greeting=Hello from workflow commands!" >> "$GITHUB_OUTPUT"
+        
+      - name: Get color
+        run: echo "Message is ${{ steps.example_step.outputs.greeting }}"
 
-      - name: Use the output
-        run: echo "Message: ${{ steps.example_step.outputs.greeting }}"
 
       - name: Add debug, notice, and warning messages
         run: |
