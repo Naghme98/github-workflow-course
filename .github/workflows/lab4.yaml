@@ -29,11 +29,6 @@ jobs:
             node: 20  
             
     runs-on: ${{ matrix.os }}
-    
-    defaults: 
-      run:
-        shell: bash
-        working-directory: ./my-node-app  
   
     steps:
       
@@ -45,8 +40,13 @@ jobs:
 
   cache:
     runs-on: ubuntu-latest
-    steps:
 
+    defaults: 
+      run:
+        shell: bash
+        working-directory: ./my-node-app  
+
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -58,6 +58,8 @@ jobs:
           restore-keys: |
             node-modules-${{ runner.os }}-
 
+      - name: Debug package-lock.json
+        run: ls -l **/package-lock.json || echo "package-lock.json not found"
+                    
       - name: Install dependencies
         run: npm install
-        working-directory: my-node-app
