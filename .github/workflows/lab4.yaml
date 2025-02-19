@@ -33,9 +33,13 @@ jobs:
     defaults: 
       run:
         shell: bash
-        working-directory: ./app  # Assume our app lives in the "app" folder
-        
+        working-directory: ./my-node-app  
+  
     steps:
+      
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Print environment details
         run: echo "Running on ${{ matrix.os }} with Node.js ${{ matrix.node }}"
 
