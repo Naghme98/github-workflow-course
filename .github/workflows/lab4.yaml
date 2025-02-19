@@ -59,7 +59,7 @@ jobs:
             node-modules-${{ runner.os }}-
 
       - name: Debug package-lock.json
-        run: echo "${{ hashFiles('package-lock.json') }}"
+        run: echo "this is  the hash ${{ hashFiles('**/package-lock.json') }}"
                     
       - name: Install dependencies
         run: npm install
