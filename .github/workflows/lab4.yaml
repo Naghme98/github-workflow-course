@@ -57,6 +57,12 @@ jobs:
           key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             node-modules-${{ runner.os }}-
+
+      - name: Debug package-lock.json
+        run: ls -l package-lock.json || echo "package-lock.json not found"
+
+      - name: Debug2 package-lock.json
+        run: ls -l my-node-app/package-lock.json || echo "package-lock.json not found"  
                     
       - name: Install dependencies
         run: npm install
