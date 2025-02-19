@@ -10,7 +10,7 @@ jobs:
         id: set-output
         run: echo "greeting=Hello from Setup Job" >> $GITHUB_ENV
     outputs:
-      greeting: ${{ env.greeting }}  # Passing output to dependent jobs
+      greeting: ${{ env.greeting }} 
 
   test:
     needs: setup  
