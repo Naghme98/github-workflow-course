@@ -1,0 +1,53 @@
+name: lab4
+
+on: workflow_dispatch
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Define an output variable
+        id: set-output
+        run: echo "greeting=Hello from Setup Job" >> $GITHUB_ENV
+    outputs:
+      greeting: ${{ env.greeting }}  # Passing output to dependent jobs
+
+  test:
+    needs: setup  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access job output
+        run: echo "Message:\ ${{ needs.setup.outputs.greeting }}" 
+
+  build:
+    strategy: 
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [16, 18]
+        include:
+          - os: ubuntu-latest
+            node: 20  
+            
+    runs-on: ${{ matrix.os }}
+    
+    defaults:  # (4) Setting default shell and working directory
+      run:
+        shell: bash
+        working-directory: ./app  # Assume our app lives in the "app" folder
+        
+    steps:
+      - name: Print environment details
+        run: echo "Running on ${{ matrix.os }} with Node.js ${{ matrix.node }}"
+
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache dependencies  # (5) Caching dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm  # Caching npm dependencies
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+      - name: Install dependencies
+        run: npm ci
