@@ -30,7 +30,7 @@ jobs:
             
     runs-on: ${{ matrix.os }}
     
-    defaults:  # (4) Setting default shell and working directory
+    defaults: 
       run:
         shell: bash
         working-directory: ./app  # Assume our app lives in the "app" folder
@@ -42,10 +42,14 @@ jobs:
   cache:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache dependencies  # (5) Caching dependencies
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies 
         uses: actions/cache@v4
         with:
-          path: ~/.npm  # Caching npm dependencies
+          path: ~/.npm 
           key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             node-modules-${{ runner.os }}-
