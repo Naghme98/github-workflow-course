@@ -49,5 +49,7 @@ jobs:
           key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             node-modules-${{ runner.os }}-
+
       - name: Install dependencies
         run: npm install
+        working-directory: my-node-app
