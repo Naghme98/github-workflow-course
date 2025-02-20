@@ -1,7 +1,5 @@
 # This page is the documents
 
-Test 1 - lab2
-
 ![example branch parameter](https://github.com/Naghme98/github-workflow-course/actions/workflows/display.yml/badge.svg?branch=main)
 
 
