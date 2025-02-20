@@ -1,0 +1,26 @@
+name: Reusable Workflow - called workflow
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+      age:
+        required: true
+        type: number
+    outputs:
+      greeting:
+        description: "The greeting message"
+        value: ${{ jobs.reusable-job.outputs.greeting }}
+
+jobs:
+  reusable-job:
+    runs-on: ubuntu-latest
+    outputs:
+      greeting: ${{ steps.greet.outputs.message }}
+    steps:
+      - name: Generate a Greeting
+        id: greet
+        run: echo "message=Hello, ${{ inputs.name }}! You are ${{ inputs.age }} years old." >> $GITHUB_OUTPUT
+

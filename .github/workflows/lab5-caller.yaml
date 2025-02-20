@@ -1,0 +1,18 @@
+name: Caller Workflow Example
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/called.yml  # Calling the reusable workflow
+    with:
+      name: "Naghme"
+      age: 120
+
+  print-output:
+    runs-on: ubuntu-latest
+    needs: call-reusable  # Ensure it runs after the reusable workflow
+    steps:
+      - name: Print the Greeting
+        run: echo "Received message:\ ${{ needs.call-reusable.outputs.greeting }}"
