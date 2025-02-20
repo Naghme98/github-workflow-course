@@ -39,6 +39,11 @@ jobs:
 
       - name: Check Redis connection
         run: redis-cli -h redis ping  # Should return "PONG"
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_HOST: localhost
+          # The default Redis port
+          REDIS_PORT: 6379
 
       - name: Read artifact content
         run: cat example.txt
