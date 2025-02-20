@@ -40,6 +40,9 @@ jobs:
         with:
           name: example-artifact
 
+      - name: Install dependencies
+        run: npm ci
+        
       - name: Redis connection
         run: node client.js 
         env:
