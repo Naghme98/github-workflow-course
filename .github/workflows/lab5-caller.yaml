@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-reusable:
-    uses: ./.github/workflows/called.yml  # Calling the reusable workflow
+    uses: ./.github/workflows/lab5-called.yaml  # Calling the reusable workflow
     with:
       name: "Naghme"
       age: 120
